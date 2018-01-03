@@ -14,7 +14,6 @@ var createMysqlPool = function(){
   return _poolModule.Pool({
     name     : 'mysql',
     create   : function(callback) {
-		console.log("createMysqlPool_create_func", mysqlConfig, callback);
       var client = mysql.createConnection({
         host: mysqlConfig.host,
         user: mysqlConfig.user,
