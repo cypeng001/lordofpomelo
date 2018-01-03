@@ -5,7 +5,7 @@ var mysql = require('mysql');
  */
 var createMysqlPool = function(app) {
 	var mysqlConfig = app.get('mysql');
-	return _poolModule.createPool({
+  return _poolModule.Pool({
 		name: 'mysql',
 		create: function(callback) {
 			
