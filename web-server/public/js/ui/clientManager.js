@@ -82,6 +82,7 @@ __resources__["/clientManager.js"] = {
       }
 
       $.post(httpHost + 'login', {username: username, password: pwd}, function(data) {
+		  console.log("login cb data:", data);
         if (data.code === 501) {
           alert('Username or password is invalid!');
           loading = false;
@@ -132,6 +133,7 @@ __resources__["/clientManager.js"] = {
       }
       pomelo.init({host: host, port: port, log: true}, function() {
         pomelo.request('connector.entryHandler.entry', {token: token}, function(data) {
+			console.log("connector.entryHandler.entry cb data:", data);
           var player = data.player;
 
           if (callback) {
@@ -249,6 +251,9 @@ __resources__["/clientManager.js"] = {
       var userData = data.user;
       var playerData = data.player;
 
+	  console.log("afterLogin userData:", userData);
+	  console.log("afterLogin playerData:", playerData);
+
       var areaId = playerData.areaId;
       var areas = {1: {map: {id: 'jiangnanyewai.png', width: 3200, height: 2400}, id: 1}};
 
@@ -304,7 +309,9 @@ __resources__["/clientManager.js"] = {
     }
 
     function enterScene(){
+		console.log("enterScene");
       pomelo.request("area.playerHandler.enterScene", null, function(data){
+		  console.log("area.playerHandler.enterScene cb data:", data);
         app.init(data);
       });
     }

@@ -57,7 +57,9 @@ __resources__["/resourceLoader.js"] = {
 
     pro.loadAreaResource = function() {
       var self = this;
+		console.log("area.resourceHandler.loadAreaResource");
       pomelo.request('area.resourceHandler.loadAreaResource',  {},function(data) {
+		  console.log("area.resourceHandler.loadAreaResource cb data:", data);
         self.setTotalCount(1 + 1 + (data.players.length  + data.mobs.length) * 16 + data.npcs.length + data.items.length + data.equipments.length);
 
         self.loadJsonResource(function(){
