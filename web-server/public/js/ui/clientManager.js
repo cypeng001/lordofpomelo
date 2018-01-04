@@ -102,8 +102,17 @@ __resources__["/clientManager.js"] = {
     }
 
     function queryEntry(uid, callback) {
+		console.log("queryEntry uid:", uid);
+
+		console.log("pomelo.init start", {host: config.GATE_HOST, port: config.GATE_PORT, log: true});
       pomelo.init({host: config.GATE_HOST, port: config.GATE_PORT, log: true}, function() {
+		  console.log("pomelo.init finish");
+
+		console.log("gate.gateHandler.queryEntry");
+
         pomelo.request('gate.gateHandler.queryEntry', { uid: uid}, function(data) {
+			console.log("gate.gateHandler.queryEntry cb data:", data);
+
           pomelo.disconnect();
 
           if(data.code === 2001) {
@@ -126,12 +135,19 @@ __resources__["/clientManager.js"] = {
      * }
      */
     function entry(host, port, token, callback) {
+		console.log("entry");
       // init socketClient
       // TODO for development
       if(host === '127.0.0.1') {
         host = config.GATE_HOST;
       }
+
+	  console.log("pomelo.init start", {host: host, port: port, log: true});
       pomelo.init({host: host, port: port, log: true}, function() {
+		  console.log("pomelo.init finish");
+
+		console.log("connector.entryHandler.entry");
+
         pomelo.request('connector.entryHandler.entry', {token: token}, function(data) {
 			console.log("connector.entryHandler.entry cb data:", data);
           var player = data.player;
@@ -231,7 +247,9 @@ __resources__["/clientManager.js"] = {
         alert("Role name's length is too long!");
         loading = false;
       } else {
+		  console.log("connector.roleHandler.createPlayer", {name: name, roleId: roleId});
         pomelo.request("connector.roleHandler.createPlayer", {name: name, roleId: roleId}, function(data) {
+			console.log("connector.roleHandler.createPlayer cb data:", data);
           loading = false;
           if (data.code == 500) {
             alert("The name already exists!");
@@ -310,6 +328,9 @@ __resources__["/clientManager.js"] = {
 
     function enterScene(){
 		console.log("enterScene");
+
+		console.log("area.playerHandler.enterScene");
+
       pomelo.request("area.playerHandler.enterScene", null, function(data){
 		  console.log("area.playerHandler.enterScene cb data:", data);
         app.init(data);

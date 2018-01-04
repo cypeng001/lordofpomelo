@@ -31,6 +31,7 @@ __resources__["/resourceLoader.js"] = {
       this.loadedCount = count;
       this.emit('loading', {total: this.totalCount, loaded: this.loadedCount});
       if (this.loadedCount === this.totalCount) {
+		  console.log("resourceLoader complete");
         this.emit('complete');
       }
     };
@@ -45,7 +46,9 @@ __resources__["/resourceLoader.js"] = {
         return;
       }
       var version = dataApi.getVersion();
+	  console.log('area.resourceHandler.loadResource', version);
       pomelo.request('area.resourceHandler.loadResource', {version: version},  function(result) {
+		   console.log('area.resourceHandler.loadResource cb result:', result);
         dataApi.setData(result.data);
         dataApi.setVersion(result.version);
         this.jsonLoad = false;
@@ -62,7 +65,9 @@ __resources__["/resourceLoader.js"] = {
 		  console.log("area.resourceHandler.loadAreaResource cb data:", data);
         self.setTotalCount(1 + 1 + (data.players.length  + data.mobs.length) * 16 + data.npcs.length + data.items.length + data.equipments.length);
 
+		console.log("loadJsonResource start");
         self.loadJsonResource(function(){
+			console.log("loadJsonResource callback");
           self.setLoadedCount(self.loadedCount + 1);
           self.loadMap(data.mapName);
           self.loadCharacter(data.players);
