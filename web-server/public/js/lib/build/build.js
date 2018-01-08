@@ -1391,6 +1391,7 @@ require.register("pomelonode-pomelo-jsclient-websocket/lib/pomelo-client.js", fu
   var initCallback = null;
 
   pomelo.init = function(params, cb){
+	  console.log("pomelo.init", params);
     initCallback = cb;
     var host = params.host;
     var port = params.port;
@@ -1506,6 +1507,7 @@ require.register("pomelonode-pomelo-jsclient-websocket/lib/pomelo-client.js", fu
   };
 
   pomelo.request = function(route, msg, cb) {
+	  console.log("pomelo.request", route, msg);
     if(arguments.length === 2 && typeof msg === 'function') {
       cb = msg;
       msg = {};
@@ -1525,6 +1527,7 @@ require.register("pomelonode-pomelo-jsclient-websocket/lib/pomelo-client.js", fu
   };
 
   pomelo.notify = function(route, msg) {
+	  console.log("pomelo.notify", route, msg);
     msg = msg || {};
     sendMessage(0, route, msg);
   };
@@ -1625,6 +1628,7 @@ require.register("pomelonode-pomelo-jsclient-websocket/lib/pomelo-client.js", fu
   };
 
   var processMessage = function(pomelo, msg) {
+	  console.log("processMessage", msg.route);
     if(!msg.id) {
       // server push message
       pomelo.emit(msg.route, msg.body);
