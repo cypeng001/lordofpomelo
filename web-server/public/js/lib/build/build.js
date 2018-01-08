@@ -1628,7 +1628,7 @@ require.register("pomelonode-pomelo-jsclient-websocket/lib/pomelo-client.js", fu
   };
 
   var processMessage = function(pomelo, msg) {
-	  console.log("processMessage", msg.route);
+	  console.log("processMessage", msg.route, msg.body);
     if(!msg.id) {
       // server push message
       pomelo.emit(msg.route, msg.body);
