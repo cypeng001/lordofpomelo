@@ -89,10 +89,12 @@ utils.myPrint = function() {
   }
 };
 
-utils.traceback = function() {
+utils.traceback = function(stackIndex) {
+  stackIndex = stackIndex || 0;
+
   var stack = getStack();
   var aimStr = '';
-  for(var i = 0; i < stack.length; ++i) {
+  for(var i = stackIndex; i < stack.length; ++i) {
     aimStr += '\'' + getFileNameByIndex(stack, i) + '\' @' + getLineNumberByIndex(stack, i) + ' :\n';
   }
   return aimStr;
@@ -109,7 +111,7 @@ utils.printTraceback = function() {
     aimStr += arguments[i] + ' ';
   }
 
-  console.log(aimStr + ' traceback:' + utils.traceback());
+  console.log(aimStr + ' traceback:' + utils.traceback(2));
 };
 
 // print the file name and the line number ~ end
