@@ -62,8 +62,16 @@ function getFileName(stack) {
   return stack[1].getFileName();
 }
 
+function getFileNameByIndex(stack, index) {
+  return stack[index].getFileName();
+}
+
 function getLineNumber(stack){
   return stack[1].getLineNumber();
+}
+
+function getLineNumberByIndex(stack, index){
+  return stack[index].getLineNumber();
 }
 
 utils.myPrint = function() {
@@ -80,5 +88,29 @@ utils.myPrint = function() {
     console.log('\n' + aimStr);
   }
 };
+
+utils.traceback = function() {
+  var stack = getStack();
+  var aimStr = '';
+  for(var i = 0; i < stack.length; ++i) {
+    aimStr += '\'' + getFileNameByIndex(stack, i) + '\' @' + getLineNumberByIndex(stack, i) + ' :\n';
+  }
+  return aimStr;
+};
+
+utils.printTraceback = function() {
+  var len = arguments.length;
+  if (len <= 0) {
+    return;
+  }
+
+  var aimStr = '';
+  for(var i = 0; i < len; ++i) {
+    aimStr += arguments[i] + ' ';
+  }
+
+  console.log(aimStr + ' traceback:' + utils.traceback());
+};
+
 // print the file name and the line number ~ end
 
