@@ -108,7 +108,12 @@ utils.printTraceback = function() {
 
   var aimStr = '';
   for(var i = 0; i < len; ++i) {
-    aimStr += arguments[i] + ' ';
+    if(typeof(arguments[i]) == 'object') {
+      aimStr += JSON.stringify(arguments[i]) + ' ';
+    }
+    else {
+      aimStr += arguments[i] + ' ';
+    }
   }
 
   console.log(aimStr + ' traceback:' + utils.traceback(2));
