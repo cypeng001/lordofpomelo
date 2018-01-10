@@ -112,7 +112,12 @@ utils.printTraceback = function() {
       aimStr += JSON.stringify(arguments[i]) + ' ';
     }
     else {
-      aimStr += arguments[i] + ' ';
+      if(arguments[i]) {
+        aimStr += arguments[i] + ' ';
+      }
+      else {
+        aimStr += 'null ';
+      }
     }
   }
 
