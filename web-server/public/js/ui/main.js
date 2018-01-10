@@ -20,10 +20,14 @@ __resources__["/main.js"] = {
             var username = document.getElementById('loginUser');
             var passwd = document.getElementById('loginPwd');
             var dusr = localStorage.getItem("username");
+			var dpwd = localStorage.getItem("pwd");
             if(dusr){
               username.value = dusr;
               passwd.value = '123';
             }
+			if(dpwd){
+				passwd.value = dpwd;
+			}
           }
         }
         

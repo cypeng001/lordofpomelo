@@ -17,8 +17,10 @@ __resources__["/main.js"] = {
 		function setDefaultUser() {
 			if (localStorage) {
 				var dusr = localStorage.getItem("username");
+				var dpwd = localStorage.getItem("pwd");
 				if(dusr){
 					$('#loginUser').val(dusr);
+					$('#loginPwd').val(dpwd);
 				}
 			}
 		}

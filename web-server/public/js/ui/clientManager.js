@@ -98,6 +98,7 @@ __resources__["/clientManager.js"] = {
           loading = false;
         });
         localStorage.setItem('username', username);
+		localStorage.setItem('pwd', pwd);
       });
     }
 
