@@ -88,6 +88,7 @@ utils.myPrint = function() {
     console.log('\n' + aimStr);
   }
 };
+// print the file name and the line number ~ end
 
 utils.traceback = function(stackIndex) {
   stackIndex = stackIndex || 0;
@@ -108,21 +109,40 @@ utils.printTraceback = function() {
 
   var aimStr = '';
   for(var i = 0; i < len; ++i) {
-    if(typeof(arguments[i]) == 'object') {
-      aimStr += JSON.stringify(arguments[i]) + ' ';
+    if(arguments[i]) {
+      aimStr += arguments[i] + ' ';
     }
     else {
-      if(arguments[i]) {
-        aimStr += arguments[i] + ' ';
-      }
-      else {
-        aimStr += 'null ';
-      }
+      aimStr += 'null ';
     }
   }
 
   console.log(aimStr + ' traceback:' + utils.traceback(2));
 };
 
-// print the file name and the line number ~ end
+Utils.obj2Str = function(obj, level) {
+  if(typeof(level) == 'undefined') {
+    level = 3;
+  }
+  level -= 1;
+
+  if(!obj) {
+    return 'null';
+  }
+
+  if(typeof(obj) != 'object' || level <= 0) {
+    return obj;
+  }
+
+  var str = '';
+  str += '{';
+  for (var k in obj) {
+    if(typeof(obj[k]) != 'function') {
+      str += ("\"" + k + '":' + Utils.obj2Str(obj[k], level) + ',');
+    }
+  }
+  str += '}';
+
+  return str;
+}
 
