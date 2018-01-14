@@ -120,7 +120,7 @@ utils.printTraceback = function() {
   console.log(aimStr + ' traceback:' + utils.traceback(2));
 };
 
-Utils.obj2Str = function(obj, level) {
+utils.obj2Str = function(obj, level) {
   if(typeof(level) == 'undefined') {
     level = 3;
   }
