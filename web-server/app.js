@@ -46,6 +46,9 @@ app.post('/login', function(req, res) {
 
   var username = msg.username;
   var pwd = msg.password;
+
+  res.header("Access-Control-Allow-Origin", "*");
+
   if (!username || !pwd) {
     res.send({code: 500});
     return;
@@ -73,6 +76,9 @@ app.post('/login', function(req, res) {
 app.post('/register', function(req, res) {
   //console.log('req.params');
   var msg = req.body;
+
+  res.header("Access-Control-Allow-Origin", "*");
+
   if (!msg.name || !msg.password) {
     res.send({code: 500});
     return;
