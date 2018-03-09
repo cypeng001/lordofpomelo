@@ -1,0 +1,1 @@
+rsync -avzr --delete cypeng@120.79.212.148::MyLog ./MyLog/
